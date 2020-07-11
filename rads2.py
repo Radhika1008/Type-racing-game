@@ -6,8 +6,8 @@ import random
 
 class Game:
     def __init__(self):
-        self.w=750
-        self.h=500
+        self.width=750
+        self.height=500
         self.reset=True
         self.active=False
         self.input_text=''
@@ -23,17 +23,17 @@ class Game:
         self.RESULT_C=(255,70,70)
         pygame.init()
         self.open_img = pygame.image.load('TYPE RACER.png')
-        self.open_img = pygame.transform.scale(self.open_img,(self.w,self.h))
+        self.open_img = pygame.transform.scale(self.open_img,(self.width,self.height))
         self.bg = pygame.image.load('type racing background.png')
         self.bg = pygame.transform.scale(self.bg,(500,500))
-        self.screen = pygame.display.set_mode((self.w,self.h))
+        self.screen = pygame.display.set_mode((self.width,self.height))
         pygame.display.set_caption('Type Speed test')
         
    
     def draw_text(self, screen, msg, y ,fsize, color):
         font = pygame.font.Font(None, fsize)
         text = font.render(msg, 1,color)
-        text_rect = text.get_rect(center=(self.w/2, y))
+        text_rect = text.get_rect(center=(self.width/2, y))
         screen.blit(text, text_rect)
         pygame.display.update()
 
@@ -61,7 +61,7 @@ class Game:
             self.results = 'Time:'+str(round(self.total_time)) +" secs Accuracy:"+ str(round(self.accuracy)) + "%" + ' Wpm: ' + str(round(self.wpm))
             self.time_img = pygame.image.load('RESET.png')
             self.time_img = pygame.transform.scale(self.time_img, (150,150))
-            screen.blit(self.time_img, (self.w/2-75,self.h-140))
+            screen.blit(self.time_img, (self.width/2-75,self.height-140))
          
             print(self.results)
             pygame.display.update()
@@ -127,7 +127,7 @@ class Game:
         self.word = self.get_sentence()
         if (not self.word): self.reset_game()
   
-        self.screen.fill((0,0,0))
+        self.screen.fill((0,0,255))
         self.screen.blit(self.bg,(0,0))
         msg = "Typing Speed Test"
         self.draw_text(self.screen, msg,80, 80,self.HEAD_C)
